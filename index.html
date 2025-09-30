@@ -373,12 +373,24 @@
             overflow: hidden;
             margin-top: 50px;
             padding: 20px 0;
+            position: relative;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .partners-slider:active {
+            cursor: grabbing;
+        }
+
+        .partners-slider.paused .partners-track {
+            animation-play-state: paused;
         }
 
         .partners-track {
             display: flex;
             gap: 50px;
             animation: scroll 40s linear infinite;
+            will-change: transform;
         }
 
         @keyframes scroll {
@@ -956,6 +968,73 @@
 
         // Initialize partners on load
         createPartnersCarousel();
+
+        // Partners slider drag and pause functionality
+        const partnersSlider = document.querySelector('.partners-slider');
+        const partnersTrack = document.getElementById('partnersTrack');
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+        let isPaused = false;
+
+        // Click to pause/play
+        partnersSlider.addEventListener('click', (e) => {
+            if (!isDragging) {
+                partnersSlider.classList.toggle('paused');
+                isPaused = !isPaused;
+            }
+        });
+
+        // Drag functionality
+        partnersSlider.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - partnersSlider.offsetLeft;
+            scrollLeft = partnersSlider.scrollLeft;
+            partnersSlider.classList.add('paused');
+        });
+
+        partnersSlider.addEventListener('mouseleave', () => {
+            if (isDragging) {
+                isDragging = false;
+            }
+        });
+
+        partnersSlider.addEventListener('mouseup', () => {
+            if (isDragging) {
+                setTimeout(() => {
+                    isDragging = false;
+                }, 100);
+            }
+        });
+
+        partnersSlider.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - partnersSlider.offsetLeft;
+            const walk = (x - startX) * 2;
+            partnersSlider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch support for mobile
+        partnersSlider.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - partnersSlider.offsetLeft;
+            scrollLeft = partnersSlider.scrollLeft;
+            partnersSlider.classList.add('paused');
+        });
+
+        partnersSlider.addEventListener('touchmove', (e) => {
+            const x = e.touches[0].pageX - partnersSlider.offsetLeft;
+            const walk = (x - startX) * 2;
+            partnersSlider.scrollLeft = scrollLeft - walk;
+        });
+
+        partnersSlider.addEventListener('touchend', () => {
+            setTimeout(() => {
+                if (!isPaused) {
+                    partnersSlider.classList.remove('paused');
+                }
+            }, 100);
+        });
 
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
