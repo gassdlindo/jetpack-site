@@ -918,7 +918,7 @@
             { name: "Tchê Pneus", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE5-XDN7AGMP95ZZ3jR4yoB3ySFRxQaZgndQ&s" }
         ];
 
-        // Shuffle partners array (keeping Tchê Pneus never first)
+        // Shuffle partners array (keeping Tchê Pneus always second)
         function shufflePartners() {
             let shuffled = [...partners];
             
@@ -932,9 +932,8 @@
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
             
-            // Add Tchê Pneus at a random position (but never first)
-            const insertPosition = Math.floor(Math.random() * (shuffled.length - 1)) + 1;
-            shuffled.splice(insertPosition, 0, tchePneus);
+            // Insert Tchê Pneus always at position 1 (second position)
+            shuffled.splice(1, 0, tchePneus);
             
             return shuffled;
         }
