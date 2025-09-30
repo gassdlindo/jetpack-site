@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JETPACK EXPRESS - Rastreio de Pedidos | Entrega em Todo Brasil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 15px rgba(254,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #fe0000;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fe0000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #fe0000;
+            cursor: pointer;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .logo-diamond {
+            width: 100%;
+            height: 100%;
+            background: #fe0000;
+            transform: rotate(45deg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-diamond::before {
+            content: '';
+            position: absolute;
+            left: -50%;
+            top: 50%;
+            width: 150%;
+            height: 3px;
+            background: white;
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            from {
+                transform: translateY(-30px);
+            }
+            to {
+                transform: translateY(30px);
+            }
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fe0000;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 12px;
+            margin-top: -5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(254,0,0,0.05) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: #666;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background: linear-gradient(135deg, #fff3cd, #ffe8a1);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 5px 20px rgba(255,193,7,0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .alert-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-icon {
+            font-size: 24px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #fe0000, #cc0000);
+            color: white;
+            padding: 20px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 15px 10px;
+            box-shadow: 0 10px 30px rgba(254,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(254,0,0,0.4);
+        }
+
+        .cta-buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .cta-buttons-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 900px;
+        }
+
+        .cta-button-small {
+            padding: 15px 30px;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #fe0000;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(254,0,0,0.15);
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            color: #fe0000;
+            margin-bottom: 20px;
+        }
+
+        .benefit-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Info Section */
+        .info-section {
+            padding: 60px 0;
+            background: #f8f8f8;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #fe0000;
+        }
+
+        .info-card h3 {
+            color: #fe0000;
+            margin-bottom: 10px;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .partners-slider {
+            overflow: hidden;
+            margin-top: 50px;
+            padding: 20px 0;
+        }
+
+        .partners-track {
+            display: flex;
+            gap: 50px;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .partner-card {
+            min-width: 200px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: scale(1.05);
+        }
+
+        .partner-logo {
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .partner-name {
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background: #f8f8f8;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f8f8;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: #fe0000;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 20px;
+        }
+
+        /* Contact Form */
+        .contact {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #fe0000;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #fe0000, #cc0000);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(254,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #fe0000;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p,
+        .footer-section address {
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #fe0000;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .social-icon:hover {
+            background: white;
+            color: #fe0000;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: row;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 90px);
+                background: white;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .cta-buttons-grid {
+                flex-direction: column;
+            }
+
+            .cta-button-small {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-img">
+                        <div class="logo-diamond"></div>
+                    </div>
+                    <div>
+                        <div class="logo-text">JETPACK EXPRESS</div>
+                        <div class="tagline">Transporte Aéreo e Rodoviário</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#rastreamento">Rastreamento</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#parceiros">Parceiros</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="rastreamento">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Rastreie Seu Pedido com Segurança Total</h1>
+                <p class="hero-subtitle">A JetPack Express é uma empresa moderna e dinâmica, especializada no transporte e distribuição de cargas por via aérea e rodoviária com cobertura nacional</p>
+                
+                <!-- Alert Box -->
+                <div class="alert-box">
+                    <div class="alert-title">
+                        <span class="alert-icon">⚠️</span>
+                        AVISO IMPORTANTE - Taxa de Segurança Anti-Fraude
+                    </div>
+                    <p><strong>Taxa de R$ 1,00 para validação do pedido:</strong> Este valor é necessário para confirmar a veracidade do pedido e garantir segurança tanto para o vendedor quanto para o cliente.</p>
+                    <p style="color: #ff0000; font-weight: bold; margin-top: 10px;">
+                        ⚠️ ATENÇÃO: Não estamos conseguindo processar pagamentos dos bancos NUBANK, CAIXA e ITAÚ no momento.
+                    </p>
+                    <p><strong>Importante:</strong> O PIX deve ser realizado pelo titular do pedido. O valor é reembolsado automaticamente em alguns minutos.</p>
+                    <p style="margin-top: 10px;">✅ <strong>Aceitamos pagamento na entrega</strong></p>
+                    <p>📦 <strong>Entregamos em todo Brasil em até 5 dias úteis</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="beneficios">
+        <div class="container">
+            <h2 class="section-title">Por Que Rastrear com a JETPACK EXPRESS?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📍</div>
+                    <h3 class="benefit-title">Rastreamento em Tempo Real</h3>
+                    <p>Acompanhe seu pedido em tempo real, desde a coleta até a entrega final, com atualizações instantâneas a cada movimentação.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3 class="benefit-title">Segurança Total</h3>
+                    <p>Sistema anti-fraude avançado que protege tanto vendedores quanto compradores, garantindo transações seguras.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Entrega Expressa</h3>
+                    <p>Transporte aéreo e rodoviário com prazo de até 5 dias úteis para qualquer lugar do Brasil.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3 class="benefit-title">Notificações Push</h3>
+                    <p>Receba notificações instantâneas sobre cada etapa do seu pedido diretamente no seu celular.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💳</div>
+                    <h3 class="benefit-title">Pagamento Flexível</h3>
+                    <p>Aceitamos pagamento na entrega para sua comodidade e segurança nas compras online.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3 class="benefit-title">Garantia de Entrega</h3>
+                    <p>100% de garantia na entrega do seu pedido ou seu dinheiro de volta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">Informações Importantes</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🚚 Cobertura Nacional</h3>
+                    <p>Atendemos todas as cidades do Brasil com nossa frota própria e parceiros certificados.</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Prazo de Entrega</h3>
+                    <p>Garantimos entrega em até 5 dias úteis para qualquer destino nacional.</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Taxa de Segurança</h3>
+                    <p>R$ 1,00 reembolsável para validação anti-fraude do pedido.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🏆 Competitividade</h3>
+                    <p>Somos competitivos, oferecendo fretes rápidos, seguros e sob medida para cada necessidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="parceiros">
+        <div class="container">
+            <h2 class="section-title">Empresas Parceiras</h2>
+            <div class="partners-slider">
+                <div class="partners-track" id="partnersTrack">
+                    <!-- Partners will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Por que preciso pagar R$ 1,00 para validar meu pedido?</div>
+                    <div class="faq-answer">
+                        <p>Esta taxa é uma medida de segurança anti-fraude que protege tanto vendedores quanto compradores. O valor é automaticamente reembolsado em alguns minutos após a confirmação da veracidade do pedido. É necessário que o PIX seja feito pelo titular do pedido.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Quais bancos estão com problema para processar o pagamento?</div>
+                    <div class="faq-answer">
+                        <p>Atualmente estamos com dificuldades técnicas para processar pagamentos de R$ 1,00 dos bancos NUBANK, CAIXA e ITAÚ. Pedimos compreensão e sugerimos o uso de outros bancos ou instituições financeiras para realizar a validação.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como funciona o rastreamento em tempo real?</div>
+                    <div class="faq-answer">
+                        <p>Através do nosso aplicativo, você recebe atualizações instantâneas sobre cada movimentação do seu pedido. Desde a coleta, passando pelos centros de distribuição, até o momento da entrega. Você também recebe notificações push para não perder nenhuma atualização.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Vocês aceitam pagamento na entrega?</div>
+                    <div class="faq-answer">
+                        <p>Sim! Aceitamos pagamento na entrega para sua maior comodidade e segurança. Você pode pagar em dinheiro, cartão de débito ou crédito diretamente ao entregador.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Qual o prazo de entrega?</div>
+                    <div class="faq-answer">
+                        <p>Garantimos entrega em até 5 dias úteis para qualquer cidade do Brasil. Nossa cobertura é 100% nacional através de transporte aéreo e rodoviário.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como posso ter certeza de que meu pedido está seguro?</div>
+                    <div class="faq-answer">
+                        <p>Utilizamos um sistema anti-fraude avançado, rastreamento em tempo real, e toda nossa operação é certificada. Além disso, oferecemos garantia de entrega ou seu dinheiro de volta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="tracking">Código de Rastreamento (opcional)</label>
+                    <input type="text" id="tracking" name="tracking">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>JETPACK EXPRESS</h3>
+                    <p>Empresa moderna e dinâmica, especializada no transporte e distribuição de cargas por via aérea e rodoviária com cobertura nacional.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/jetpack.express/" target="_blank" class="social-icon">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Endereço</h3>
+                    <address>
+                        AV DR JOAO BATISTA SOARES DE QUEIROZ JUNIOR 551<br>
+                        Jd das Industrias<br>
+                        CEP: 12240-000<br>
+                        São José dos Campos - SP
+                    </address>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>
+                        📞 Telefone: (11) 3804-5629<br>
+                        📧 E-mail: contato@jetpack.express<br>
+                        CNPJ: 03.395.341/0002-82
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <p>
+                        Segunda a Sexta: 8h às 18h<br>
+                        Sábado: 8h às 12h<br>
+                        <br>
+                        Central de Rastreamento 24h pelo App
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JETPACK EXPRESS - Todos os direitos reservados | CNPJ: 03.395.341/0002-82</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Partners data
+        const partners = [
+            { name: "Casa Dos Pneus", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLlQHQJ8F_NDSs2iapGZ_pMDAdOs2z_clgHQ&s" },
+            { name: "IMPACTO", logo: "https://raichu-uploads.s3.amazonaws.com/companypagedetail_2e6af957-59f5-4ec4-817a-9f6d80c3a5e6.png" },
+            { name: "Bono Pneus BH Pedro II", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjq2HJyCmvhrWGNfh4LcZiDO6b1KTpYqk3Dg&s" },
+            { name: "Rio Claro Pneus - Padre Eustáquio", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEGQ_qtAR817Ye5kVjLSYSo5-F5-uaiEQqlw&s" },
+            { name: "Stock Pneus", logo: "https://pedro2.storycars.com.br/wp-content/uploads/2025/08/LOGOS-STOCK-PNEUS-1-scaled.png" },
+            { name: "Tchê Pneus", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE5-XDN7AGMP95ZZ3jR4yoB3ySFRxQaZgndQ&s" }
+        ];
+
+        // Shuffle partners array (keeping Tchê Pneus never first)
+        function shufflePartners() {
+            let shuffled = [...partners];
+            
+            // Remove Tchê Pneus from array
+            const tchePneus = shuffled.find(p => p.name === "Tchê Pneus");
+            shuffled = shuffled.filter(p => p.name !== "Tchê Pneus");
+            
+            // Shuffle the array without Tchê Pneus
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            // Add Tchê Pneus at a random position (but never first)
+            const insertPosition = Math.floor(Math.random() * (shuffled.length - 1)) + 1;
+            shuffled.splice(insertPosition, 0, tchePneus);
+            
+            return shuffled;
+        }
+
+        // Create partners carousel
+        function createPartnersCarousel() {
+            const track = document.getElementById('partnersTrack');
+            const shuffledPartners = shufflePartners();
+            
+            // Create two sets for infinite scroll
+            const partnersHTML = shuffledPartners.map(partner => `
+                <div class="partner-card">
+                    <img src="${partner.logo}" alt="${partner.name}" class="partner-logo">
+                    <div class="partner-name">${partner.name}</div>
+                </div>
+            `).join('');
+            
+            track.innerHTML = partnersHTML + partnersHTML;
+        }
+
+        // Initialize partners on load
+        createPartnersCarousel();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                const subject = `Contato Site - ${data.name}`;
+                const body = `
+Nome: ${data.name}
+E-mail: ${data.email}
+Telefone: ${data.phone}
+Código de Rastreamento: ${data.tracking || 'Não informado'}
+
+Mensagem:
+${data.message}
+                `.trim();
+                
+                const mailtoLink = `mailto:bluezaodoente123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                window.location.href = mailtoLink;
+                this.reset();
+            });
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe benefit cards and info cards
+        document.querySelectorAll('.benefit-card, .info-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Dynamic year in footer
+        const currentYear = new Date().getFullYear();
+        const footerYear = document.querySelector('.footer-bottom p');
+        if (footerYear) {
+            footerYear.innerHTML = footerYear.innerHTML.replace('2025', currentYear);
+        }
+
+        // Particles animation in background
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'rgba(254, 0, 0, 0.1)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '1';
+            
+            const startX = Math.random() * window.innerWidth;
+            particle.style.left = startX + 'px';
+            particle.style.top = '-10px';
+            
+            document.body.appendChild(particle);
+            
+            let posY = -10;
+            const speed = 1 + Math.random() * 2;
+            const sway = Math.random() * 2 - 1;
+            
+            const animateParticle = () => {
+                posY += speed;
+                particle.style.top = posY + 'px';
+                particle.style.left = (startX + Math.sin(posY / 50) * sway * 20) + 'px';
+                
+                if (posY > window.innerHeight) {
+                    particle.remove();
+                } else {
+                    requestAnimationFrame(animateParticle);
+                }
+            };
+            
+            requestAnimationFrame(animateParticle);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 3000);
+
+        // Mobile check
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Adjust animations for mobile
+        if (isMobile()) {
+            document.querySelectorAll('.benefit-card, .info-card').forEach(card => {
+                card.style.transition = 'all 0.3s ease';
+            });
+        }
+    </script>
+</body>
+</html>
