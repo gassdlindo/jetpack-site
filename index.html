@@ -211,27 +211,21 @@
             }
         }
 
-        /* Alert Box */
-        .alert-box {
-            background: linear-gradient(135deg, #fff3cd, #ffe8a1);
-            border: 2px solid #ffc107;
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
             border-radius: 12px;
             padding: 20px;
             margin: 30px auto;
             max-width: 800px;
-            box-shadow: 0 5px 20px rgba(255,193,7,0.2);
-            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 5px 20px rgba(14,165,233,0.2);
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .alert-title {
+        .info-title {
             font-size: 20px;
             font-weight: bold;
-            color: #856404;
+            color: #0c4a6e;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -239,8 +233,13 @@
             gap: 10px;
         }
 
-        .alert-icon {
+        .info-icon {
             font-size: 24px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+            color: #0c4a6e;
         }
 
         /* CTA Button */
@@ -656,27 +655,28 @@
     <section class="hero" id="rastreamento">
         <div class="container">
             <div class="hero-content">
-                <h1>Rastreie Seu Pedido com Segurança Total</h1>
+                <h1>Rastreie Seu Pedido em Tempo Real</h1>
                 <p class="hero-subtitle">A JetPack Express é uma empresa moderna e dinâmica, especializada no transporte e distribuição de cargas por via aérea e rodoviária com cobertura nacional</p>
                 
-                <!-- Alert Box -->
-                <div class="alert-box">
-                    <div class="alert-title">
-                        <span class="alert-icon">🔒</span>
-                        MEDIDA DE SEGURANÇA - Validação de Pedido
+                <!-- Info Box -->
+                <div class="info-box">
+                    <div class="info-title">
+                        <span class="info-icon">🚀</span>
+                        Sua Transportadora de Confiança
                     </div>
-                    <p><strong>Devido ao alto número de pedidos falsos</strong>, implementamos uma medida de proteção para garantir a segurança de todos os nossos clientes e parceiros.</p>
-                    <p style="margin-top: 10px;"><strong>Transferência Temporária de R$ 1,00:</strong> Este valor serve exclusivamente para validar a autenticidade do pedido através de uma transferência que é automaticamente reembolsada em poucos minutos após a confirmação.</p>
-                    <p style="margin-top: 10px;"><strong>⚠️ Importante:</strong> O PIX deve ser realizado pelo titular do pedido cadastrado. Esta medida nos ajuda a combater fraudes e garantir que apenas pedidos legítimos sejam processados, protegendo você e nossos parceiros comerciais.</p>
-                    <p style="color: #ff0000; font-weight: bold; margin-top: 15px;">
-                        ⚠️ ATENÇÃO: Não estamos conseguindo processar transferências dos bancos NUBANK, CAIXA e ITAÚ no momento. Utilize outro banco para completar a validação.
+                    <p><strong>A JETPACK EXPRESS é referência nacional</strong> em transporte e logística, oferecendo soluções completas para empresas e consumidores em todo o Brasil.</p>
+                    <p><strong>Frota própria com tecnologia de ponta</strong></p>
+                    <p><strong>Rastreamento em tempo real 24 horas por dia</strong></p>
+                    <p><strong>Seguro total para todas as cargas</strong></p>
+                    <p><strong>Entrega expressa em até 5 dias úteis</strong></p>
+                    <p><strong>Pagamento na entrega disponível</strong></p>
+                    <p style="margin-top: 15px; font-size: 18px; font-weight: bold;">
+                        Baixe nosso aplicativo e acompanhe seu pedido em tempo real!
                     </p>
-                    <p style="margin-top: 15px;">✅ <strong>Aceitamos pagamento na entrega para sua comodidade</strong></p>
-                    <p>📦 <strong>Entregamos em todo Brasil em até 5 dias úteis com rastreamento completo</strong></p>
                 </div>
 
                 <a href="#" class="cta-button" id="downloadAppBtn">
-                    📱 BAIXAR APP DE RASTREAMENTO
+                    Baixar App de Rastreamento
                 </a>
             </div>
         </div>
@@ -685,7 +685,7 @@
     <!-- Benefits Section -->
     <section class="benefits" id="beneficios">
         <div class="container">
-            <h2 class="section-title">Por Que Rastrear com a JETPACK EXPRESS?</h2>
+            <h2 class="section-title">Por Que Escolher a JETPACK EXPRESS?</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">📍</div>
@@ -695,7 +695,7 @@
                 <div class="benefit-card">
                     <div class="benefit-icon">🔒</div>
                     <h3 class="benefit-title">Segurança Total</h3>
-                    <p>Sistema anti-fraude avançado que protege tanto vendedores quanto compradores, garantindo transações seguras.</p>
+                    <p>Todas as cargas são transportadas com seguro total e rastreamento GPS para máxima proteção.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🚀</div>
@@ -704,18 +704,18 @@
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">📱</div>
-                    <h3 class="benefit-title">Notificações Push</h3>
+                    <h3 class="benefit-title">Aplicativo Completo</h3>
                     <p>Receba notificações instantâneas sobre cada etapa do seu pedido diretamente no seu celular.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">💳</div>
-                    <h3 class="benefit-title">Pagamento Flexível</h3>
-                    <p>Aceitamos pagamento na entrega para sua comodidade e segurança nas compras online.</p>
+                    <h3 class="benefit-title">Pagamento na Entrega</h3>
+                    <p>Aceitamos pagamento na entrega para sua comodidade e segurança. Pague com dinheiro, PIX, débito ou crédito.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">🛡️</div>
                     <h3 class="benefit-title">Garantia de Entrega</h3>
-                    <p>100% de garantia na entrega do seu pedido ou seu dinheiro de volta.</p>
+                    <p>Compromisso com prazos e qualidade no atendimento em todo território nacional.</p>
                 </div>
             </div>
         </div>
@@ -735,11 +735,11 @@
                     <p>Garantimos entrega em até 5 dias úteis para qualquer destino nacional.</p>
                 </div>
                 <div class="info-card">
-                    <h3>💰 Taxa de Segurança</h3>
-                    <p>R$ 1,00 reembolsável para validação anti-fraude do pedido.</p>
+                    <h3>📦 Seguro Incluso</h3>
+                    <p>Todas as cargas transportadas possuem seguro total contra danos e extravios.</p>
                 </div>
                 <div class="info-card">
-                    <h3>🏆 Competitividade</h3>
+                    <h3>🏆 Qualidade Garantida</h3>
                     <p>Somos competitivos, oferecendo fretes rápidos, seguros e sob medida para cada necessidade.</p>
                 </div>
             </div>
@@ -764,27 +764,9 @@
             <h2 class="section-title">Perguntas Frequentes</h2>
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question">Por que preciso pagar R$ 1,00 para validar meu pedido?</div>
-                    <div class="faq-answer">
-                        <p>Esta taxa é uma medida de segurança anti-fraude que protege tanto vendedores quanto compradores. O valor é automaticamente reembolsado em alguns minutos após a confirmação da veracidade do pedido. É necessário que o PIX seja feito pelo titular do pedido.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Quais bancos estão com problema para processar o pagamento?</div>
-                    <div class="faq-answer">
-                        <p>Atualmente estamos com dificuldades técnicas para processar transferências de R$ 1,00 dos bancos NUBANK, CAIXA e ITAÚ. Pedimos compreensão e sugerimos o uso de outros bancos ou instituições financeiras para realizar a validação.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
                     <div class="faq-question">Como funciona o rastreamento em tempo real?</div>
                     <div class="faq-answer">
-                        <p>Através do nosso aplicativo, você recebe atualizações instantâneas sobre cada movimentação do seu pedido. Desde a coleta, passando pelos centros de distribuição, até o momento da entrega. Você também recebe notificações push para não perder nenhuma atualização.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Vocês aceitam pagamento na entrega?</div>
-                    <div class="faq-answer">
-                        <p>Sim! Aceitamos pagamento na entrega para sua maior comodidade e segurança. Você pode pagar em dinheiro, cartão de débito ou crédito diretamente ao entregador.</p>
+                        <p>Através do nosso aplicativo, você recebe atualizações instantâneas sobre cada movimentação do seu pedido. Desde a coleta, passando pelos centros de distribuição, até o momento da entrega.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -794,9 +776,33 @@
                     </div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">Como posso ter certeza de que meu pedido está seguro?</div>
+                    <div class="faq-question">As cargas são seguradas?</div>
                     <div class="faq-answer">
-                        <p>Utilizamos um sistema anti-fraude avançado, rastreamento em tempo real, e toda nossa operação é certificada. Além disso, oferecemos garantia de entrega ou seu dinheiro de volta.</p>
+                        <p>Sim! Todas as cargas transportadas pela JETPACK EXPRESS possuem seguro total contra danos, extravios e sinistros durante o transporte.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Como posso rastrear meu pedido?</div>
+                    <div class="faq-answer">
+                        <p>Baixe nosso aplicativo disponível para Android e iOS, ou acesse nossa plataforma web com seu código de rastreamento.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Vocês aceitam pagamento na entrega?</div>
+                    <div class="faq-answer">
+                        <p>Sim! Aceitamos pagamento na entrega para sua maior comodidade e segurança. Você pode pagar em dinheiro, cartão de débito ou crédito diretamente ao entregador.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Vocês atendem empresas?</div>
+                    <div class="faq-answer">
+                        <p>Sim! Oferecemos soluções logísticas personalizadas para empresas de todos os portes, com contratos corporativos e condições especiais.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Qual a cobertura de entrega?</div>
+                    <div class="faq-answer">
+                        <p>Atendemos todo o território nacional, incluindo capitais, interior e regiões de difícil acesso através de nossa rede de distribuição.</p>
                     </div>
                 </div>
             </div>
@@ -843,7 +849,7 @@
                     <div class="social-links">
                         <a href="https://www.instagram.com/jetpack.express/" target="_blank" class="social-icon">
                             <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058 1.281-.073 1.689-.073 4.948 0 3.259.014 3.667.072 4.947-.2 4.358-2.618 6.78-6.98 6.98-1.281.058-1.689.072-4.948.072-3.259 0-3.668-.014-4.948-.072-4.354-.2-6.782-2.618-6.979-6.98-.059-1.28-.073-1.689-.073-4.948 0-3.259.014-3.667.072-4.947.196-4.354 2.617-6.78 6.979-6.98 1.281-.059 1.69-.073 4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
                             </svg>
                         </a>
                     </div>
@@ -1075,10 +1081,36 @@ Mensagem:
 ${data.message}
                 `.trim();
                 
-                const mailtoLink = `mailto:jetpackexpress@contato.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const mailtoLink = `mailto:contato@jetpack.express?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 
                 window.location.href = mailtoLink;
                 this.reset();
+            });
+        }
+
+        // Download App Button
+        const downloadAppBtn = document.getElementById('downloadAppBtn');
+        if (downloadAppBtn) {
+            downloadAppBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const downloadLink = 'https://jetpackexpress.b-cdn.net/JETPACKs.apk';
+                
+                if (downloadLink && downloadLink !== '#') {
+                    const tempLink = document.createElement('a');
+                    tempLink.href = downloadLink;
+                    tempLink.setAttribute('download', 'JETPACK_EXPRESS.apk');
+                    tempLink.style.display = 'none';
+                    
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                } else {
+                    document.getElementById('contato').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         }
 
@@ -1097,54 +1129,12 @@ ${data.message}
             });
         }, observerOptions);
 
-        // Observe benefit cards and info cards
         document.querySelectorAll('.benefit-card, .info-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'all 0.6s ease';
             observer.observe(card);
         });
-
-        // Add hover effect to CTA button
-        const ctaButton = document.querySelector('.cta-button');
-        if (ctaButton) {
-            ctaButton.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05)';
-            });
-            
-            ctaButton.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        }
-
-        // Download App Button
-        const downloadAppBtn = document.getElementById('downloadAppBtn');
-        if (downloadAppBtn) {
-            downloadAppBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // ADICIONE SEU LINK DE DOWNLOAD AQUI
-                const downloadLink = 'https://jetpackexpress.b-cdn.net/JETPACKs.apk';
-                
-                if (downloadLink && downloadLink !== '#') {
-                    // Cria um link temporário para download na mesma guia
-                    const tempLink = document.createElement('a');
-                    tempLink.href = downloadLink;
-                    tempLink.setAttribute('download', 'JETPACK_EXPRESS.apk');
-                    tempLink.style.display = 'none';
-                    
-                    document.body.appendChild(tempLink);
-                    tempLink.click();
-                    document.body.removeChild(tempLink);
-                } else {
-                    // Enquanto não tiver link, redireciona para contato
-                    document.getElementById('contato').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        }
 
         // Dynamic year in footer
         const currentYear = new Date().getFullYear();
@@ -1153,7 +1143,7 @@ ${data.message}
             footerYear.innerHTML = footerYear.innerHTML.replace('2025', currentYear);
         }
 
-        // Particles animation in background
+        // Particles animation
         function createParticle() {
             const particle = document.createElement('div');
             particle.style.position = 'fixed';
@@ -1189,20 +1179,7 @@ ${data.message}
             requestAnimationFrame(animateParticle);
         }
 
-        // Create particles periodically
         setInterval(createParticle, 3000);
-
-        // Mobile check
-        function isMobile() {
-            return window.innerWidth <= 768;
-        }
-
-        // Adjust animations for mobile
-        if (isMobile()) {
-            document.querySelectorAll('.benefit-card, .info-card').forEach(card => {
-                card.style.transition = 'all 0.3s ease';
-            });
-        }
     </script>
 </body>
 </html>
