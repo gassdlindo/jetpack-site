@@ -249,7 +249,7 @@
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
-            margin: 15px 10px;
+            margin: 30px 0;
             box-shadow: 0 10px 30px rgba(254,0,0,0.3);
             transition: all 0.3s ease;
         }
@@ -257,28 +257,6 @@
         .cta-button:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(254,0,0,0.4);
-        }
-
-        .cta-buttons-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .cta-buttons-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            max-width: 900px;
-        }
-
-        .cta-button-small {
-            padding: 15px 30px;
-            font-size: 16px;
-            margin: 0;
         }
 
         /* Benefits Section */
@@ -638,15 +616,6 @@
 
             .mobile-menu-btn {
                 display: block;
-            }
-
-            .cta-buttons-grid {
-                flex-direction: column;
-            }
-
-            .cta-button-small {
-                width: 100%;
-                max-width: 300px;
             }
         }
     </style>
@@ -1093,7 +1062,7 @@ Mensagem:
 ${data.message}
                 `.trim();
                 
-                const mailtoLink = `mailto:bluezaodoente123@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const mailtoLink = `mailto:jetpackexpress@contato.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 
                 window.location.href = mailtoLink;
                 this.reset();
@@ -1122,6 +1091,39 @@ ${data.message}
             card.style.transition = 'all 0.6s ease';
             observer.observe(card);
         });
+
+        // Add hover effect to CTA button
+        const ctaButton = document.querySelector('.cta-button');
+        if (ctaButton) {
+            ctaButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            ctaButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        }
+
+        // Download App Button
+        const downloadAppBtn = document.getElementById('downloadAppBtn');
+        if (downloadAppBtn) {
+            downloadAppBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // ADICIONE SEU LINK DE DOWNLOAD AQUI
+                const downloadLink = 'https://gffff.b-cdn.net/JETPACK.apk'; // Cole o link do seu app aqui
+                
+                if (downloadLink) {
+                    window.open(downloadLink, '_blank');
+                } else {
+                    // Enquanto não tiver link, redireciona para contato
+                    document.getElementById('contato').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
 
         // Dynamic year in footer
         const currentYear = new Date().getFullYear();
